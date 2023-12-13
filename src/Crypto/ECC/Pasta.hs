@@ -16,7 +16,7 @@ are NOT constant time; Safety and simplicity are the top priorities.
 {-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables, Safe #-}
 
 module Pasta (Fp, Fq, Num(..), Pallas, Vesta, Curve(..), CurvePt(..), Field(..), 
-  hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime) where
+  hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime, hashToCurvePallas) where
 
 import Prelude
 import Curves (Curve(..), CurvePt(..), Point(..))
