@@ -87,8 +87,8 @@ hashToCurvePallas domain_separator msg = result
     q0 = mapToCurveSimpleSwu fe0 (fromInteger (-13)) :: IsoPallas  -- -13 is Pasta specific magic constant
     q1 = mapToCurveSimpleSwu fe1 (fromInteger (-13)) :: IsoPallas
     (Projective xp yp zp) = pointAdd q0 q1 :: IsoPallas
-    x = xp * inv0 zp ;  y = yp * inv0 zp
-    result = Projective x y 1 :: Pallas
+    --x = xp * inv0 zp ;  y = yp * inv0 zp
+    result = Projective xp yp zp :: Pallas
 
 
 -- | The `hashToVesta` function takes an arbitrary `ByteString` and maps it to a valid 
