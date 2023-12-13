@@ -56,7 +56,7 @@ module PastaCurves (Fp, Fq, Pallas, Vesta, CurvePt(..), Curve(..), hashToPallas,
   exampleFq, examplePallasPt, exampleVestaPt, Num(..)) where
 
 import Pasta (Fp, Fq, Num(..), Pallas, Vesta, CurvePt(..), Curve(..), Field(..), 
-  hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime)
+  hashToPallas, hashToCurvePallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime)
 import Data.ByteString.UTF8 (fromString)
 
 
