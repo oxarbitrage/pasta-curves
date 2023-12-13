@@ -80,6 +80,16 @@ hashToPallas domain_separator msg = result
     proposed = Projective (xTop * inv0 xBot) (y * yTop * inv0 yBot) 1 :: Pallas
     result = if isOnCurve proposed then proposed else error "hashed to Pallas non-point"
 
+hashToCurvePallas :: String -> ByteString -> Pallas
+hashToCurvePallas domain_separator msg = result 
+  where
+    (fe0, fe1) = hash2Field msg domain_separator "pallas" :: (Fp, Fp)
+    q0 = mapToCurveSimpleSwu fe0 (fromInteger (-13)) :: IsoPallas  -- -13 is Pasta specific magic constant
+    q1 = mapToCurveSimpleSwu fe1 (fromInteger (-13)) :: IsoPallas
+    (Projective xp yp zp) = pointAdd q0 q1 :: IsoPallas
+    x = xp * inv0 zp ;  y = yp * inv0 zp
+    result = Projective x y 1 :: Pallas
+
 
 -- | The `hashToVesta` function takes an arbitrary `ByteString` and maps it to a valid 
 -- point on the Vesta elliptic curve (of unknown relation to the base point).
