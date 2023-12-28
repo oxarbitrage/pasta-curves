@@ -13,16 +13,19 @@ two isogenous curves, mapping functionality, and coefficient vectors). The algor
 are NOT constant time; Safety and simplicity are the top priorities.
 -}
 
-{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables, Safe #-}
+{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables #-}
 
-module Pasta (Fp, Fq, Num(..), Pallas, Vesta, Curve(..), CurvePt(..), Field(..), 
-  hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime, hashToCurvePallas) where
+module Pasta (Fp, Fq, Num(..), Pallas, IsoPallas, Vesta, Curve(..), CurvePt(..), Field(..), 
+  hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime) where
 
 import Prelude
 import Curves (Curve(..), CurvePt(..), Point(..))
 import Fields (Fz, Field(..))
 import Data.ByteString.UTF8 (ByteString)
 import System.Random (RandomGen)
+
+import Debug.Trace (trace)
+
 
 
 -- | `Fp` is the field element used as a coordinate in the Pallas elliptic curve.
@@ -79,17 +82,6 @@ hashToPallas domain_separator msg = result
     yBot = x ^ (3::Integer) + isoPallasVecs !! 10 * x ^ (2::Integer) + isoPallasVecs !! 11 * x + isoPallasVecs !! 12 
     proposed = Projective (xTop * inv0 xBot) (y * yTop * inv0 yBot) 1 :: Pallas
     result = if isOnCurve proposed then proposed else error "hashed to Pallas non-point"
-
-hashToCurvePallas :: String -> ByteString -> Pallas
-hashToCurvePallas domain_separator msg = result 
-  where
-    (fe0, fe1) = hash2Field msg domain_separator "pallas" :: (Fp, Fp)
-    q0 = mapToCurveSimpleSwu fe0 (fromInteger (-13)) :: IsoPallas  -- -13 is Pasta specific magic constant
-    q1 = mapToCurveSimpleSwu fe1 (fromInteger (-13)) :: IsoPallas
-    (Projective xp yp zp) = pointAdd q0 q1 :: IsoPallas
-    --x = xp * inv0 zp ;  y = yp * inv0 zp
-    result = Projective xp yp zp :: Pallas
-
 
 -- | The `hashToVesta` function takes an arbitrary `ByteString` and maps it to a valid 
 -- point on the Vesta elliptic curve (of unknown relation to the base point).
