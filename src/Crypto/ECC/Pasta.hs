@@ -13,7 +13,7 @@ two isogenous curves, mapping functionality, and coefficient vectors). The algor
 are NOT constant time; Safety and simplicity are the top priorities.
 -}
 
-{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables, Safe #-}
+{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables #-}
 
 module Pasta (Fp, Fq, Num(..), Pallas, IsoPallas, Vesta, Curve(..), CurvePt(..), Field(..), 
   hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime) where
