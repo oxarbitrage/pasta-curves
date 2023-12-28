@@ -10,7 +10,7 @@ SPDX-License-Identifier: MIT
 This module provides a trivial Main target for application executable builds.
 -}
 
-{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE NoImplicitPrelude, Safe #-}
 
 module Main (main) where
 
