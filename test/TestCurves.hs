@@ -19,9 +19,6 @@ import TestFields ()
 import PastaCurves
 import Curves (Point(Projective))
 
-import Debug.Trace (trace)
-
-
 
 instance Arbitrary Pallas where
   arbitrary = do

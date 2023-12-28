@@ -13,7 +13,7 @@ two isogenous curves, mapping functionality, and coefficient vectors). The algor
 are NOT constant time; Safety and simplicity are the top priorities.
 -}
 
-{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables #-}
+{-# LANGUAGE DataKinds, NoImplicitPrelude, ScopedTypeVariables, Safe #-}
 
 module Pasta (Fp, Fq, Num(..), Pallas, IsoPallas, Vesta, Curve(..), CurvePt(..), Field(..), 
   hashToPallas, hashToVesta, rndPallas, rndVesta, pallasPrime, vestaPrime) where
@@ -23,8 +23,6 @@ import Curves (Curve(..), CurvePt(..), Point(..))
 import Fields (Fz, Field(..))
 import Data.ByteString.UTF8 (ByteString)
 import System.Random (RandomGen)
-
-import Debug.Trace (trace)
 
 
 

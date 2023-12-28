@@ -49,7 +49,7 @@ Projective {_px = 0x3CDC6A090F2BB3B52714C083929B620FE24ADBCBBD420752108CD7C29E54
 
 -}
 
-{-# LANGUAGE DataKinds, NoImplicitPrelude #-}
+{-# LANGUAGE DataKinds, NoImplicitPrelude, Safe #-}
 
 module PastaCurves (Fp, Fq, Pallas, Vesta, CurvePt(..), Curve(..), hashToPallas,
   hashToVesta, rndPallas, rndVesta, Field(..), pallasPrime, vestaPrime, exampleFp, 
