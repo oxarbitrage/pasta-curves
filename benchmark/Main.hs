@@ -11,7 +11,7 @@ This module provides a basic Main target for benchmarking builds. The suite of
 benchmarks will be expanded over time.
 -}
 
-{-# LANGUAGE NoImplicitPrelude, Safe #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
 module Main (main) where
 
