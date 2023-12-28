@@ -80,6 +80,10 @@ class CurvePt a where
   -- | The `pointAdd` function adds two curve points on the same elliptic curve.
   pointAdd :: a -> a -> a
 
+
+  -- | The `pointAdd` function adds two curve points on the same elliptic curve.
+  pointAdd' :: a -> a -> a
+
   -- | The `toBytesC` function serializes a point to a (compressed) @ByteStream@.
   toBytesC :: a -> ByteString
 
@@ -155,6 +159,15 @@ instance (Field f, KnownNat a, KnownNat b, KnownNat baseX, KnownNat baseY) =>
       m15 = (- m0 - m1 + m3) * (m0 * 3 + m9)
       m16 = (- m1 - m2 + m5) * (m1 + m6 + m7)
       result = Projective (-m13 + m14) (m8 + m12) (m15 + m16) :: Point a b baseX baseY f
+
+  -- We will see
+  pointAdd' (Projective x1 y1 z1) (Projective x2 y2 z2) = do     
+    let (Projective xp yp zp) = pointAdd (Projective x1 y1 z1) (Projective x2 y2 z2) :: Point a b baseX baseY f
+    let x = xp * inv0 zp 
+    let y = yp * inv0 zp
+    let p = Projective x y 1 :: Point a b baseX baseY f
+    p
+
 
   -- Note that point doubling from algorithm 3 on page 10 would require around "13" 
   -- multiplications (not much/enough performance benefit)
