@@ -14,5 +14,4 @@ main = do
   setEnv "TASTY_QUICKCHECK_TESTS" "1_000"
   defaultMain $ testGroup "\nRunning Tests" [fieldProps, testBadF, testGoodF, testRnd,
     testHashToPallas, testHashToVesta, curveProps, testPOI, testBadC, testPallasEq, testRndPV]
-  
   print "Finished!"
