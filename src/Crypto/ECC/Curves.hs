@@ -161,12 +161,12 @@ instance (Field f, KnownNat a, KnownNat b, KnownNat baseX, KnownNat baseY) =>
 
 
   -- Convert the result from `pointAdd` to affined coordinates.
-  pointAddAffined (Projective x1 y1 z1) (Projective x2 y2 z2) = do
-    let (Projective xp yp zp) = pointAdd (Projective x1 y1 z1) (Projective x2 y2 z2) :: Point a b baseX baseY f
-    let x = xp * inv0 zp 
-    let y = yp * inv0 zp
-    let p = Projective x y 1 :: Point a b baseX baseY f
-    p
+  pointAddAffined (Projective x1 y1 z1) (Projective x2 y2 z2) = result
+    where
+      (Projective xp yp zp) = pointAdd (Projective x1 y1 z1) (Projective x2 y2 z2) :: Point a b baseX baseY f
+      x = xp * inv0 zp
+      y = yp * inv0 zp
+      result = Projective x y 1 :: Point a b baseX baseY f
 
 
   -- Note that point doubling from algorithm 3 on page 10 would require around "13" 
