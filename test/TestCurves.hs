@@ -65,7 +65,7 @@ testPOI = testCase "poi decode" $
 testBadC :: TestTree
 testBadC = testCase "bad decode" $ do
   let tooFewBytes = pack [0, 0]
-  let act1 =  fromBytesC tooFewBytes :: Maybe Pallas
+  let act1 = fromBytesC tooFewBytes :: Maybe Pallas
   assertBool "bad too short bytes" (isNothing act1)
   let tooManyBytes = pack $ replicate 34 0
   let act2 = fromBytesC tooManyBytes :: Maybe Pallas
@@ -108,7 +108,7 @@ testHashToPallas = testCase "testHashToPallas" $ assertBool "Failed testHashToPa
     z = 0x1d48103df8fcbb70d1809c1806c95651dd884a559fec0549658537ce9d94bed9 :: Fp
     x = 0x36a6e3a9c50b7b6540cb002c977c82f37f8a875fb51eb35327ee1452e6ce7947 * inv0 (z ^ (2::Integer))
     y = 0x01da3b4403d73252f2d7e9c19bc23dc6a080f2d02f8262fca4f7e3d756ac6a7c * inv0 (z ^ (3::Integer))
-    xpected = Projective x y 1 :: Pallas
+    expected = Projective x y 1 :: Pallas
     helper = actual == expected
 
 
